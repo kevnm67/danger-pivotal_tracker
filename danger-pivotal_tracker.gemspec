@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = 'danger-pivotal_tracker'
   spec.version       = PivotalTracker::VERSION
   spec.authors       = ['Kevin Morton']
-  spec.email         = ['kevnm67@gmail.com']
+  spec.email         = ['']
   spec.description   = %q{A short description of danger-pivotal_tracker.}
   spec.summary       = %q{A longer description of danger-pivotal_tracker.}
-  spec.homepage      = 'https://github.com/Kevin Morton/danger-pivotal_tracker'
+  spec.homepage      = 'https://github.com/kevnm67/danger-pivotal_tracker'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)
@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'danger-plugin-api', '~> 1.0'
 
   # General ruby development
-  spec.add_development_dependency 'bundler', '~> 1.3'
+  spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake', '~> 10.0'
 
   # Testing support

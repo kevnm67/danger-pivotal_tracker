@@ -13,21 +13,9 @@ module Danger
   #
   #          my_plugin.warn_on_mondays
   #
-  # @see  Kevin Morton/danger-pivotal_tracker
+  # @see  kevnm67/danger-pivotal_tracker
   # @tags monday, weekends, time, rattata
   #
   class DangerPivotalTracker < Plugin
-
-    # An attribute that you can read/write from your Dangerfile
-    #
-    # @return   [Array<String>]
-    attr_accessor :my_attribute
-
-    # A method that you can call from your Dangerfile
-    # @return   [Array<String>]
-    #
-    def warn_on_mondays
-      warn 'Trying to merge code on a Monday' if Date.today.wday == 1
-    end
   end
 end
