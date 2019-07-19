@@ -50,11 +50,9 @@ module Danger
       throw Error("'key' missing - must supply an array of story ids") if key.nil?
       throw Error("'url' missing - must supply url installation URL") if url.nil?
 
-      pivotal_stories = find_pivotal_stories(
-        key: key,
-        search_title: search_title,
-        search_commits: search_commits
-      )
+      pivotal_stories = find_pivotal_stories(search_title: search_title, search_commits: search_commits)
+
+      # pivotal_stories = find_pivotal_stories(key: "Delivered")
 
       if !pivotal_stories.empty?
         story_urls = pivotal_stories.map { |issue| link(href: ensure_url_ends_with_slash(url), issue: issue) }.join(", ")
