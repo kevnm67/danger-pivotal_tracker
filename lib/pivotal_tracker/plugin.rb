@@ -44,13 +44,13 @@ module Danger
     #
     # @return [void]
     #
-    def check(key: nil, project_id: "nil", emoji: ":link:", search_title: true, search_commits: false, fail_on_warning: false, report_missing: true)
+    def check(key: "", project_id: "nil", emoji: ":link:", search_title: true, search_commits: false, fail_on_warning: false, report_missing: true)
       url = "https://www.pivotaltracker.com/n/projects/#{project_id}/stories/"
 
       throw Error("'key' missing - must supply an array of story ids") if key.nil?
       throw Error("'url' missing - must supply url installation URL") if url.nil?
 
-      pivotal_stories = find_pivotal_stories(search_title: search_title, search_commits: search_commits)
+      pivotal_stories = find_pivotal_stories(key: key, search_title: search_title, search_commits: search_commits)
 
       # pivotal_stories = find_pivotal_stories(key: "Delivered")
 
