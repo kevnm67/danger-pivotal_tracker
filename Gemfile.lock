@@ -32,6 +32,8 @@ GEM
       no_proxy_fix
       octokit (~> 4.7)
       terminal-table (~> 1)
+    danger-auto_label (1.3.1)
+      danger-plugin-api (~> 1.0)
     danger-plugin-api (1.0.0)
       danger (> 2.0)
     diff-lcs (1.3)
@@ -123,6 +125,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler
+  danger-auto_label
   danger-pivotal_tracker!
   guard (~> 2.14)
   guard-rspec (~> 4.7)
