@@ -77,7 +77,4 @@ if lib_has_changes && !tests_updated
 	warn("Library files were updated without test coverage.  Consider updating or adding tests to cover changes.")
 end
 
-pivotal_tracker.check(
-	# key: %w[Delivered Finishes ],
-	project_id: "2371161"
-)
+pivotal_tracker.check(key: "Delivered", project_id: "2371161")
