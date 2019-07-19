@@ -55,6 +55,17 @@ module Danger
 
           expect(issues.first).to include("https://www.pivotaltracker.com/n/projects/2371161/stories/167207295")
         end
+
+        it "creates a pivotal tracker link appending the story id when only project id provided" do
+          issues = @my_plugin.check(project_id: "2371161")
+
+          expect(issues.first).to include("https://www.pivotaltracker.com/n/projects/2371161/stories/167207295")
+        end
+
+        it "creates a pivotal tracker link appending the story id when no params set" do
+          issues = @my_plugin.check
+          expect(issues.first).to include("/stories/167207295")
+        end
       end
     end
   end
