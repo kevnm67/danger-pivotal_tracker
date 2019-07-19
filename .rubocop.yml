@@ -3,7 +3,11 @@
 # If you don't like these settings, just delete this file :)
 
 AllCops:
-  TargetRubyVersion: 2.0
+  Exclude:
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+    - 'tmp/**/*'
+  TargetRubyVersion: 2.3
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
@@ -22,16 +26,27 @@ Lint/UselessAssignment:
   Exclude:
     - '**/spec/**/*'
 
+Layout/AccessModifierIndentation:
+  Enabled: true
+
 # We could potentially enable the 2 below:
-Layout/IndentHash:
+Layout/IndentFirstHashElement:
   Enabled: false
 
 Layout/AlignHash:
-  Enabled: false
+  EnforcedHashRocketStyle:
+    - key
+    - table
+  EnforcedColonStyle:
+    - key
+    - table
 
 # HoundCI doesn't like this rule
 Layout/DotPosition:
   Enabled: false
+
+Layout/EmptyLineAfterMagicComment:
+  Enabled: true
 
 # We allow !! as it's an easy way to convert ot boolean
 Style/DoubleNegation:
@@ -127,7 +142,7 @@ Metrics/BlockLength:
 Style/MixinGrouping:
   Enabled: false
 
-Style/FileName:
+Naming/FileName:
   Enabled: false
 
 Layout/IndentHeredoc:

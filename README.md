@@ -1,6 +1,7 @@
 # danger-pivotal_tracker
+[![Build Status](https://travis-ci.com/kevnm67/danger-pivotal_tracker.svg?branch=master)](https://travis-ci.com/kevnm67/danger-pivotal_tracker)
 
-A description of danger-pivotal_tracker.
+[![Build Status](https://travis-ci.com/kevnm67/danger-pivotal_tracker.svg?branch=develop)](https://travis-ci.com/kevnm67/danger-pivotal_tracker)
 
 ## Installation
 
