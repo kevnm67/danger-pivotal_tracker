@@ -26,6 +26,10 @@ jobs:
       name: RVM 2.5.1
       rvm:: 2.5.1
 
+    - <<: *test
+      name: RVM 2.6.0
+      rvm:: 2.6.0
+
 stages:
   - test
 
