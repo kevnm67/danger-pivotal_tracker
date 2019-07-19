@@ -1,4 +1,8 @@
-require File.expand_path("../spec_helper", __FILE__)
+# frozen_string_literal: true
+
+require File.expand_path("spec_helper", __dir__)
+
+# Run tests using ```bundle exec rake spec```
 
 module Danger
   describe Danger::DangerPivotalTracker do
@@ -14,33 +18,44 @@ module Danger
         @dangerfile = testing_dangerfile
         @my_plugin = @dangerfile.pivotal_tracker
 
-        # mock the PR data
-        # you can then use this, eg. github.pr_author, later in the spec
-        json = File.read(File.dirname(__FILE__) + '/support/fixtures/github_pr.json') # example json: `curl https://api.github.com/repos/danger/danger-plugin-template/pulls/18 > github_pr.json`
-        allow(@my_plugin.github).to receive(:pr_json).and_return(json)
+        allow(@my_plugin).to receive_message_chain("github.pr_title").and_return("[Delivered #167207295] [Finishes #333207295] #444444295 some great feature")
+
+        allow(@my_plugin).to receive_message_chain("github.pr_body").and_return("[Delivered #167207295]")
       end
 
-      # Some examples for writing tests
-      # You should replace these with your own.
+      describe "Finding pivotal stories" do
+        it "returns expected story id matched in the PR title" do
+          issues = @my_plugin.find_pivotal_stories(key: "Delivered")
 
-      it "Warns on a monday" do
-        monday_date = Date.parse("2016-07-11")
-        allow(Date).to receive(:today).and_return monday_date
+          expect(issues).to eq(["167207295"])
+        end
 
-        @my_plugin.warn_on_mondays
+        it "returns only delivered stories" do
+          issues = @my_plugin.find_pivotal_stories(key: "Delivered")
 
-        expect(@dangerfile.status_report[:warnings]).to eq(["Trying to merge code on a Monday"])
+          expect(issues).to eq(["167207295"])
+        end
+
+        it "returns ids iff preceeded by status Finishes" do
+          issues = @my_plugin.find_pivotal_stories(key: "Finishes")
+
+          expect(issues).to eq(["333207295"])
+        end
+
+        it "returns 3 story ids when no key is provided" do
+          issues = @my_plugin.find_pivotal_stories
+
+          expect(issues).to eq(["167207295", "333207295", "444444295"])
+        end
       end
 
-      it "Does nothing on a tuesday" do
-        monday_date = Date.parse("2016-07-12")
-        allow(Date).to receive(:today).and_return monday_date
+      describe "Generating pivotal tracker story URLs" do
+        it "creates a pivotal tracker link appending the story id" do
+          issues = @my_plugin.check(key: "Delivered", project_id: "2371161")
 
-        @my_plugin.warn_on_mondays
-
-        expect(@dangerfile.status_report[:warnings]).to eq([])
+          expect(issues.first).to include("https://www.pivotaltracker.com/n/projects/2371161/stories/167207295")
+        end
       end
-
     end
   end
 end
