@@ -1,7 +1,32 @@
-# danger-pivotal_tracker
-[![Build Status](https://travis-ci.com/kevnm67/danger-pivotal_tracker.svg?branch=master)](https://travis-ci.com/kevnm67/danger-pivotal_tracker)
+# Danger Pivotal Tracker Plugin
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-[![Build Status](https://travis-ci.com/kevnm67/danger-pivotal_tracker.svg?branch=develop)](https://travis-ci.com/kevnm67/danger-pivotal_tracker)
+- [Danger Pivotal Tracker Plugin](#danger-pivotal-tracker-plugin)
+	- [Installation](#installation)
+	- [Usage](#usage)
+	- [Development](#development)
+
+<!-- /TOC -->
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th>Badge</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Travis CI (Master)</td>
+        <td><a href="https://travis-ci.com/kevnm67/danger-pivotal_tracker"><img src="https://travis-ci.com/kevnm67/danger-pivotal_tracker.svg?branch=master" /></a></td>
+      </tr>
+      <tr>
+        <td>Travis CI (Develop)</td>
+        <td><a href="https://travis-ci.com/kevnm67/danger-pivotal_tracker"><img src="https://travis-ci.com/kevnm67/danger-pivotal_tracker.svg?branch=develop" /></a></td>
+      </tr>
+      </tbody>
+  </table>
+</body>
 
 ## Installation
 
@@ -14,8 +39,8 @@
 
 ## Development
 
-1. Clone this repo
-2. Run `bundle install` to setup dependencies.
-3. Run `bundle exec rake spec` to run the tests.
-4. Use `bundle exec guard` to automatically have tests run as you make changes.
-5. Make your changes.
+1.  Clone this repo
+2.  Run `bundle install` to setup dependencies.
+3.  Run `bundle exec rake spec` to run the tests.
+4.  Use `bundle exec guard` to automatically have tests run as you make changes.
+5.  Make your changes.
