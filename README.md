@@ -24,9 +24,18 @@
         <td>Travis CI (Develop)</td>
         <td><a href="https://travis-ci.com/kevnm67/danger-pivotal_tracker"><img src="https://travis-ci.com/kevnm67/danger-pivotal_tracker.svg?branch=develop" /></a></td>
       </tr>
+      <tr>
+        <td>Code Climate</td>
+        <td><a href="https://codeclimate.com/github/kevnm67/danger-pivotal_tracker/maintainability"><img src="https://api.codeclimate.com/v1/badges/ad4a58bf6d0c81d8e6f4/maintainability" /></a></td>
+      </tr>
+      <tr>
+        <td>Code Coverage</td>
+        <td><a href="https://codeclimate.com/github/kevnm67/danger-pivotal_tracker/test_coverage"><img src="https://api.codeclimate.com/v1/badges/ad4a58bf6d0c81d8e6f4/test_coverage" /></a></td>
+      </tr>
       </tbody>
   </table>
 </body>
+
 
 ## Installation
 

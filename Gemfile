@@ -4,3 +4,5 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'danger-auto_label'
+
+gem 'simplecov', require: false, group: :test
