@@ -9,7 +9,6 @@ before_install:
   - bundle install --without=documentation
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
 
 jobs:
   include:
@@ -17,6 +16,8 @@ jobs:
       stage: test
       name: RVM 2.0
       rvm:: 2.0
+      before_script:
+        - ./cc-test-reporter before-build
       script:
         - bundle exec rake spec
         - bundle exec danger
