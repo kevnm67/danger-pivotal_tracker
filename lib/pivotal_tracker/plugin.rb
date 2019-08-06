@@ -71,7 +71,7 @@ module Danger
     # @return [Type] Matches story ids.
     def find_pivotal_stories(key: nil, search_title: true, search_commits: true)
       keys = key.kind_of?(Array) ? key.join(" |") : key
-      story_key_regex_string = /(#{keys} )#(\d{7,})/i
+      story_key_regex_string = /(#{keys} )#(\d{6,})/i
       regexp = Regexp.new(/#{story_key_regex_string}/)
 
       matching_stories = []
