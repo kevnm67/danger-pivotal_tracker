@@ -9,11 +9,9 @@ module Danger
   # for generating documentation from your plugin source, and you can verify
   # by running `danger plugins lint` or `bundle exec rake spec`.
   #
-  # You should replace these comments with a public description of your library.
+  # @example Check the PR for pivotal tracker story ID's and, if found, post links in the comments.
   #
-  # @example Ensure people are well warned about merging on Mondays
-  #
-  #          my_plugin.warn_on_mondays
+  #          check(key: "Delivered", project_id: "PROJECT_ID")
   #
   # @see  kevnm67/danger-pivotal_tracker
   # @tags pivotal-tracker, pivotal
@@ -48,11 +46,8 @@ module Danger
       url = "https://www.pivotaltracker.com/n/projects/#{project_id}/stories/"
 
       throw Error("'key' missing - must supply an array of story ids") if key.nil?
-      throw Error("'url' missing - must supply url installation URL") if url.nil?
 
       pivotal_stories = find_pivotal_stories(key: key, search_title: search_title, search_commits: search_commits)
-
-      # pivotal_stories = find_pivotal_stories(key: "Delivered")
 
       if !pivotal_stories.empty?
         story_urls = pivotal_stories.map { |issue| link(href: ensure_url_ends_with_slash(url), issue: issue) }.join(", ")
@@ -74,7 +69,7 @@ module Danger
     # @param search_title [Type] default: true
     # @param search_commits [Type] default: false
     # @return [Type] Matches story ids.
-    def find_pivotal_stories(key: nil, search_title: true, search_commits: false)
+    def find_pivotal_stories(key: nil, search_title: true, search_commits: true)
       keys = key.kind_of?(Array) ? key.join(" |") : key
       story_key_regex_string = /(#{keys} )#(\d{7,})/i
       regexp = Regexp.new(/#{story_key_regex_string}/)
@@ -90,6 +85,7 @@ module Danger
       end
 
       if search_commits
+        puts "git commits #{git.commits}"
         git.commits.map do |commit|
           commit.message.gsub(regexp) do |match|
             matching_stories << extract_id(match).first
