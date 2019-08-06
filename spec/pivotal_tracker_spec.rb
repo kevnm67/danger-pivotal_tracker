@@ -19,27 +19,49 @@ module Danger
         @my_plugin = @dangerfile.pivotal_tracker
 
         allow(@my_plugin).to receive_message_chain("github.pr_title").and_return("[Delivered #167207295] [Finishes #333207295] #444444295 some great feature")
-
         allow(@my_plugin).to receive_message_chain("github.pr_body").and_return("[Delivered #167207295]")
       end
 
       describe "Finding pivotal stories" do
-        it "returns expected story id matched in the PR title" do
-          issues = @my_plugin.find_pivotal_stories(key: "Delivered")
+        context "when key is delivered" do
+          it "returns story id matched in the PR title" do
+            issues = @my_plugin.find_pivotal_stories(key: "Delivered")
 
-          expect(issues).to eq(["167207295"])
+            expect(issues).to eq(["167207295"])
+          end
+
+          it "does not include the ID of a finished story" do
+            issues = @my_plugin.find_pivotal_stories(key: "Delivered")
+
+            expect(issues).not_to include(["333207295"])
+          end
         end
 
-        it "returns only delivered stories" do
-          issues = @my_plugin.find_pivotal_stories(key: "Delivered")
+        context "when key is finishes" do
+          it "returns only IDs of stories preceeded by Finishes" do
+            issues = @my_plugin.find_pivotal_stories(key: "Finishes")
 
-          expect(issues).to eq(["167207295"])
+            expect(issues).to eq(["333207295"])
+          end
         end
 
-        it "returns ids iff preceeded by status Finishes" do
-          issues = @my_plugin.find_pivotal_stories(key: "Finishes")
+        context "when search commits is true" do
+          it "returns three ids" do
+            issues = @my_plugin.find_pivotal_stories(search_commits: true)
 
-          expect(issues).to eq(["333207295"])
+            expect(issues).to eq(["167207295", "333207295", "444444295"])
+          end
+        end
+
+        context "when no valid story ids" do
+          it "returns only IDs of stories preceeded by Finishes" do
+            allow(@my_plugin).to receive_message_chain("github.pr_body").and_return("the details")
+            allow(@my_plugin).to receive_message_chain("github.pr_title").and_return("some great feature")
+
+            issues = @my_plugin.find_pivotal_stories
+
+            expect(issues).to eq([])
+          end
         end
 
         it "returns 3 story ids when no key is provided" do
@@ -65,6 +87,17 @@ module Danger
         it "creates a pivotal tracker link appending the story id when no params set" do
           issues = @my_plugin.check
           expect(issues.first).to include("/stories/167207295")
+        end
+
+        context "when no valid story ids" do
+          it "returns only IDs of stories preceeded by Finishes" do
+            allow(@my_plugin).to receive_message_chain("github.pr_body").and_return("the details")
+            allow(@my_plugin).to receive_message_chain("github.pr_title").and_return("some great feature")
+
+            issues = @my_plugin.check
+
+            expect(issues).not_to include("https://www.pivotaltracker.com/")
+          end
         end
       end
     end
