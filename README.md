@@ -1,4 +1,6 @@
 # Danger Pivotal Tracker Plugin
+<a href="https://badge.fury.io/rb/danger-pivotal_tracker"><img src="https://badge.fury.io/rb/danger-pivotal_tracker.svg" alt="Gem Version" height="18"></a>
+
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Danger Pivotal Tracker Plugin](#danger-pivotal-tracker-plugin)
