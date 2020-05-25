@@ -14,8 +14,8 @@ jobs:
   include:
     - &test
       stage: test
-      name: RVM 2.0
-      rvm:: 2.0
+      name: RVM 2.7.1
+      rvm:: 2.7.1
       before_script:
         - ./cc-test-reporter before-build
       script:
@@ -25,8 +25,8 @@ jobs:
         - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
     - <<: *test
-      name: RVM 2.3.1
-      rvm:: 2.3.1
+      name: RVM 2.7.0
+      rvm:: 2.7.0
 
     - <<: *test
       name: RVM 2.5.1
@@ -50,6 +50,5 @@ cache:
   bundler: true
   pip: true
   directories:
-    - $HOME/vendor/bundle/
     - $HOME/.rvm/
     - $HOME/Library/Caches/Homebrew
