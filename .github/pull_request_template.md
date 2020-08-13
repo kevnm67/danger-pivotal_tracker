@@ -6,15 +6,11 @@
 <!-- List the high-level objectives of this pull request. -->
 <!-- Include any relevant context. -->
 
-### Implementation Details :construction:
+<!-- ### Implementation Details :construction: -->
 <!-- Explain the reasoning behind any architectural changes. -->
 <!-- Highlight any new functionality. -->
 
-<!-- ### Testing Details :mag: -->
-<!-- Describe what tests you've added for your changes. -->
-
 ### Checklist:
 
-- [ ] **Added test coverage**
-- [ ] I tested and reviewed my code.
-- [ ] I added comments/documentation.
+- [ ] Added test coverage?
+- [ ] Added documentation?

@@ -1,0 +1,22 @@
+---
+CI/CD:
+  - .circleci/*
+  - .codeclimate.yml
+  - .github/*
+  - .ruby-version
+  - .swift-version
+  - Dangerfile
+  - fastlane/*
+  - Makefile
+  - travis.yml
+Tests:
+  - spec/*
+dependencies:
+  - Brewfile
+  - Gemfile
+  - Gemfile.lock
+documentation:
+  - CHANGELOG.md
+  - doc/*
+  - Documentation/*
+  - README.md
